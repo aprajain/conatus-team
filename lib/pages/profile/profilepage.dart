@@ -1,8 +1,19 @@
+import 'package:conatus_team/models/constants.dart';
+import 'package:conatus_team/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProfilePage extends StatelessWidget {
+import 'editprofile.dart';
+
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  //TabController _tabController;
+
   Future _urllaunch(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -20,10 +31,24 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.edit,
+            ),
+            onPressed: () {
+              //Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Edit()));
+            },
+          )
+        ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        //height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               Stack(
@@ -62,17 +87,25 @@ class ProfilePage extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            'Apra Jain',
+                            Information.name,
                             style: TextStyle(
                               fontSize: 28,
                             ),
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'App Developer',
+                            Information.tech,
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.grey,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            Information.branch,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey[600],
                             ),
                           ),
                           Spacer(),
@@ -102,6 +135,13 @@ class ProfilePage extends StatelessWidget {
                                 },
                                 child: Icon(FontAwesomeIcons.github),
                               ),
+                              GestureDetector(
+                                onTap: () {
+                                  _urllaunch(
+                                      'https://www.linkedin.com/in/apra-jain-8118731b7/');
+                                },
+                                child: Icon(FontAwesomeIcons.linkedin),
+                              ),
                             ],
                           ),
                         ],
@@ -130,26 +170,51 @@ class ProfilePage extends StatelessWidget {
                 overflow: Overflow.visible,
               ),
               SizedBox(height: 150),
-              DefaultTabController(
-                length: 3,
-                child: TabBar(tabs: [
-                  Tab(
-                      child: Text(
-                    "Skills",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  )),
-                  Tab(
-                      child: Text(
-                    "Education",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  )),
-                  Tab(
-                      child: Text(
-                    "Projects",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ))
-                ]),
+              element(
+                elementText(
+                    'Pursuing Bachelor of Technology from AKGEC  |  Java  |  C#  |  Flutter'),
               ),
+              element(
+                Row(
+                  children: [
+                    elementText('Attendance Percentage'),
+                    Spacer(),
+                    elementText('79%')
+                  ],
+                ),
+              ),
+              element(Column(
+                children: [
+                  Row(
+                    children: [
+                      elementText('Active Projects'),
+                      Spacer(),
+                      elementText('3')
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      elementText('Projects Completed'),
+                      Spacer(),
+                      elementText('5'),
+                    ],
+                  ),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      elementText('For more information visit '),
+                      GestureDetector(
+                        onTap: () {
+                          _urllaunch(
+                              'https://github.com/aprajain?tab=repositories');
+                        },
+                        child: elementText('Github.'),
+                      ),
+                    ],
+                  ),
+                ],
+              )),
             ],
           ),
         ),

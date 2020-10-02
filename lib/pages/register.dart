@@ -1,15 +1,16 @@
 import 'package:conatus_team/models/constants.dart';
+import 'package:conatus_team/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class Edit extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _EditState createState() => _EditState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _EditState extends State<Edit> {
-  String name = Information.name;
-  String bio = Information.tech, section = Information.branch;
+class _RegisterState extends State<Register> {
+  String name;
+  String bio, section;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -32,7 +33,8 @@ class _EditState extends State<Edit> {
                 Information.name = name;
                 Information.branch = section;
                 Information.tech = bio;
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => Profile()));
               }
             },
           ),

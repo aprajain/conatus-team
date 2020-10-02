@@ -46,7 +46,7 @@ class MeetingAttendance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF549499),
+      //backgroundColor: Color(0xFF549499),
       body: ListView.builder(
           physics: BouncingScrollPhysics(),
           padding: const EdgeInsets.all(8),

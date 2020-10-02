@@ -1,7 +1,9 @@
+import 'package:conatus_team/models/constants.dart';
 import 'package:conatus_team/models/theme.dart';
 import 'package:conatus_team/pages/attendance/attendancetab.dart';
 import 'package:conatus_team/pages/profile/profile.dart';
 import 'package:conatus_team/pages/profile/profilepage.dart';
+import 'package:conatus_team/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,8 +43,15 @@ class Home extends StatelessWidget {
               child: element(elementText('Attendance'))),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Profile()));
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (_) => Profile()));
+              if (Information.name == null) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Register()));
+              } else {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Profile()));
+              }
             },
             child: element(
               elementText('Profile'),
@@ -50,8 +59,13 @@ class Home extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => ProfilePage()));
+              if (Information.name == null) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Register()));
+              } else {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ProfilePage()));
+              }
             },
             child: element(
               elementText('Profile2'),

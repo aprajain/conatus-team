@@ -62,7 +62,7 @@ class _AttendanceState extends State<Attendance> {
       padding: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.black45,
+        color: Colors.blueGrey,
       ),
       child: body,
     );
@@ -111,7 +111,7 @@ class _AttendanceState extends State<Attendance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff549499),
+        //backgroundColor: Color(0xff549499),
         extendBodyBehindAppBar: true,
         //appBar: appBar(),
         //drawer: Menu(),
@@ -124,7 +124,7 @@ class _AttendanceState extends State<Attendance> {
               children: [
                 CircularPercentIndicator(
                   radius: 120.0,
-                  backgroundColor: Colors.white54,
+                  backgroundColor: Colors.grey[300],
                   lineWidth: 13.0,
                   animation: true,
                   percent: 0.7,

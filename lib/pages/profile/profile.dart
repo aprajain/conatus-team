@@ -14,8 +14,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  //String name = Information.name;
-
   Future _urllaunch(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -65,7 +63,7 @@ class _ProfileState extends State<Profile> {
                 height: 20,
               ),
               Text(
-                Information.name = 'Apra Jain',
+                Information.name,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 30,
@@ -73,9 +71,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               SizedBox(height: 5),
-              info(Information.branch = '2nd Year IT'),
+              info(Information.branch),
               SizedBox(height: 5),
-              info(Information.tech = 'App Development'),
+              info(Information.tech),
               SizedBox(height: 10),
               divider(),
               Container(

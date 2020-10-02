@@ -17,7 +17,7 @@ class MeetNames extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.fromLTRB(20, 80, 20, 10),
         width: double.infinity,
-        color: Colors.green[200],
+        //color: Colors.green[200],
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
