@@ -33,6 +33,15 @@ dependencies:
   kt_drawer_menu: ^0.0.6
   material_design_icons_flutter: ^4.0.5655
   outline_material_icons: ^0.1.1
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: ^0.12.9+4
+  provider: ^3.1.0
+  google_sign_in: ^4.5.3
+  flutter_spinkit: ^4.1.2+1
+  image_picker: ^0.6.7+7
+  image_cropper: ^1.3.1
+  shared_preferences: ^0.5.10
+  firebase_core :
  
 
 

@@ -4,7 +4,22 @@ import 'package:conatus_team/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class RegisterPage extends StatelessWidget {
+import 'auth.dart';
+
+class RegisterPage extends StatefulWidget {
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final AuthServices _auth = AuthServices();
+  final _formKey = GlobalKey<FormState>();
+  bool loading = false;
+
+  //text field state
+  String email = '';
+  String password = '';
+  String error = '';
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -50,33 +65,48 @@ class RegisterPage extends StatelessWidget {
                     child: Container(
                       width: width * .83,
                       padding: EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w300),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.w300),
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: textDeco.copyWith(labelText: 'Email'),
-                              maxLines: 1,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration:
+                                    textDeco.copyWith(labelText: 'Email'),
+                                maxLines: 1,
+                                validator: (val) =>
+                                    val.isEmpty ? 'Enter an email' : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                },
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration:
-                                  textDeco.copyWith(labelText: 'Password'),
-                              obscureText: true,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration:
+                                    textDeco.copyWith(labelText: 'Password'),
+                                obscureText: true,
+                                validator: (val) => val.length < 6
+                                    ? 'Password must have min 6 chars'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                },
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 4),
-                        ],
+                            SizedBox(height: 4),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -96,19 +126,19 @@ class RegisterPage extends StatelessWidget {
                                   fontSize: 22,
                                   fontWeight: FontWeight.w400))),
                       onTap: () async {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) => Register()));
-                        // if (_formKey.currentState.validate()) {
-                        //   setState(() => loading = true);
-                        //   dynamic result =
-                        //       await _auth.signInEmail(email, password);
-                        //   if (result == null) {
-                        //     setState(() {
-                        //       error = 'please supply a valid email';
-                        //       loading = false;
-                        //     });
-                        //   }
-                        // }
+                        if (_formKey.currentState.validate()) {
+                          setState(() => loading = true);
+                          dynamic result =
+                              await _auth.signInEmail(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = 'please supply a valid email';
+                              loading = false;
+                            });
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (_) => Register()));
+                          }
+                        }
                       },
                     ),
                   ),

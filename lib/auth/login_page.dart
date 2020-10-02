@@ -1,12 +1,28 @@
 import 'package:conatus_team/auth/registerPage.dart';
 import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/form_deco.dart';
+import 'package:conatus_team/pages/home/home.dart';
 import 'package:conatus_team/pages/home/mainPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class LoginPage extends StatelessWidget {
+import 'auth.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final AuthServices _auth = AuthServices();
+  final _formKey = GlobalKey<FormState>();
+  bool loading = false;
+
+  //text field state
+  String email = '';
+  String password = '';
+  String error = '';
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -52,42 +68,57 @@ class LoginPage extends StatelessWidget {
                     child: Container(
                       width: width * .83,
                       padding: EdgeInsets.all(8),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w300),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: textDeco.copyWith(labelText: 'Email'),
-                              maxLines: 1,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration:
-                                  textDeco.copyWith(labelText: 'Password'),
-                              obscureText: true,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text('Forgot Password? ',
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Login',
                                 style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  //fontStyle: FontStyle.italic,
-                                  //decoration: TextDecoration.underline,
-                                )),
-                          ),
-                        ],
+                                    fontSize: 30, fontWeight: FontWeight.w300),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration:
+                                    textDeco.copyWith(labelText: 'Email'),
+                                maxLines: 1,
+                                validator: (val) =>
+                                    val.isEmpty ? 'Enter an email' : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration:
+                                    textDeco.copyWith(labelText: 'Password'),
+                                obscureText: true,
+                                validator: (val) => val.length < 6
+                                    ? 'Password must have min 6 chars'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                },
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text('Forgot Password? ',
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    //fontStyle: FontStyle.italic,
+                                    //decoration: TextDecoration.underline,
+                                  )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -107,19 +138,19 @@ class LoginPage extends StatelessWidget {
                                   fontSize: 22,
                                   fontWeight: FontWeight.w400))),
                       onTap: () async {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) => HomeScreen()));
-                        // if (_formKey.currentState.validate()) {
-                        //   setState(() => loading = true);
-                        //   dynamic result =
-                        //       await _auth.signInEmail(email, password);
-                        //   if (result == null) {
-                        //     setState(() {
-                        //       error = 'please supply a valid email';
-                        //       loading = false;
-                        //     });
-                        //   }
-                        // }
+                        // Navigator.pushReplacement(context,
+                        //     MaterialPageRoute(builder: (_) => HomeScreen()));
+                        if (_formKey.currentState.validate()) {
+                          setState(() => loading = true);
+                          dynamic result =
+                              await _auth.signInEmail(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = 'please supply a valid email';
+                              loading = false;
+                            });
+                          }
+                        }
                       },
                     ),
                   ),

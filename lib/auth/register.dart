@@ -1,6 +1,7 @@
 import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/constants.dart';
 import 'package:conatus_team/models/form_deco.dart';
+import 'package:conatus_team/pages/home/home.dart';
 import 'package:conatus_team/pages/home/mainPage.dart';
 import 'package:conatus_team/pages/profile/profile.dart';
 import 'package:conatus_team/pages/profile/profilepage.dart';
