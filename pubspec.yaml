@@ -28,6 +28,12 @@ dependencies:
   google_fonts:
   url_launcher:
   flutter_form_builder:
+  fancy_drawer:
+  kf_drawer: ^1.1.2  
+  kt_drawer_menu: ^0.0.6
+  material_design_icons_flutter: ^4.0.5655
+  outline_material_icons: ^0.1.1
+ 
 
 
   # The following adds the Cupertino Icons font to your application.

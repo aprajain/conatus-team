@@ -1,6 +1,7 @@
 import 'package:conatus_team/auth/registerPage.dart';
 import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/form_deco.dart';
+import 'package:conatus_team/pages/home/mainPage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -106,8 +107,8 @@ class LoginPage extends StatelessWidget {
                                   fontSize: 22,
                                   fontWeight: FontWeight.w400))),
                       onTap: () async {
-                        Navigator.pushReplacement(
-                            context, MaterialPageRoute(builder: (_) => Home()));
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => HomeScreen()));
                         // if (_formKey.currentState.validate()) {
                         //   setState(() => loading = true);
                         //   dynamic result =

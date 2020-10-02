@@ -120,6 +120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  fancy_drawer:
+    dependency: "direct main"
+    description:
+      name: fancy_drawer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   ffi:
     dependency: transitive
     description:
@@ -275,6 +282,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  kf_drawer:
+    dependency: "direct main"
+    description:
+      name: kf_drawer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
+  kt_drawer_menu:
+    dependency: "direct main"
+    description:
+      name: kt_drawer_menu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.6"
   logging:
     dependency: transitive
     description:
@@ -289,6 +310,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.8"
+  material_design_icons_flutter:
+    dependency: "direct main"
+    description:
+      name: material_design_icons_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.5655"
   meta:
     dependency: transitive
     description:
@@ -296,6 +324,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
+  outline_material_icons:
+    dependency: "direct main"
+    description:
+      name: outline_material_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   path:
     dependency: transitive
     description:

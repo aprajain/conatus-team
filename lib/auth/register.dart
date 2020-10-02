@@ -1,6 +1,7 @@
 import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/constants.dart';
 import 'package:conatus_team/models/form_deco.dart';
+import 'package:conatus_team/pages/home/mainPage.dart';
 import 'package:conatus_team/pages/profile/profile.dart';
 import 'package:conatus_team/pages/profile/profilepage.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _RegisterState extends State<Register> {
                 Information.branch = section;
                 Information.tech = bio;
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => Home()));
+                    context, MaterialPageRoute(builder: (_) => HomeScreen()));
               }
             },
           ),

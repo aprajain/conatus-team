@@ -1,6 +1,6 @@
 import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/form_deco.dart';
-import 'package:conatus_team/pages/register.dart';
+import 'package:conatus_team/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
