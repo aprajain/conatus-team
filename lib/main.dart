@@ -1,3 +1,4 @@
+import 'package:conatus_team/auth/login_page.dart';
 import 'package:conatus_team/models/constants.dart';
 import 'package:conatus_team/models/theme.dart';
 import 'package:conatus_team/pages/attendance/attendancetab.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: LoginPage(),
     );
   }
 }
@@ -41,22 +42,15 @@ class Home extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => AttendancePage()));
               },
               child: element(elementText('Attendance'))),
-          GestureDetector(
-            onTap: () {
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (_) => Profile()));
-              if (Information.name == null) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Register()));
-              } else {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Profile()));
-              }
-            },
-            child: element(
-              elementText('Profile'),
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     Navigator.push(
+          //         context, MaterialPageRoute(builder: (_) => LoginPage()));
+          //   },
+          //   child: element(
+          //     elementText('Login'),
+          //   ),
+          // ),
           GestureDetector(
             onTap: () {
               if (Information.name == null) {
@@ -68,7 +62,7 @@ class Home extends StatelessWidget {
               }
             },
             child: element(
-              elementText('Profile2'),
+              elementText('Profile'),
             ),
           )
         ],

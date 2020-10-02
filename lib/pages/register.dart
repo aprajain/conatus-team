@@ -1,5 +1,8 @@
+import 'package:conatus_team/main.dart';
 import 'package:conatus_team/models/constants.dart';
+import 'package:conatus_team/models/form_deco.dart';
 import 'package:conatus_team/pages/profile/profile.dart';
+import 'package:conatus_team/pages/profile/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -34,49 +37,59 @@ class _RegisterState extends State<Register> {
                 Information.branch = section;
                 Information.tech = bio;
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => Profile()));
+                    context, MaterialPageRoute(builder: (_) => Home()));
               }
             },
           ),
           SizedBox(width: 5),
         ],
       ),
-      body: FormBuilder(
-          key: _fbKey,
-          child: Column(
-            children: [
-              FormBuilderTextField(
-                onChanged: (val) {
-                  setState(() {
-                    name = val;
-                  });
-                },
-                attribute: 'name',
-                initialValue: Information.name,
-                decoration: InputDecoration(labelText: 'Name'),
-              ),
-              FormBuilderTextField(
-                onChanged: (val) {
-                  setState(() {
-                    section = val;
-                  });
-                },
-                attribute: 'branch',
-                initialValue: Information.branch,
-                decoration: InputDecoration(labelText: 'Branch, Year'),
-              ),
-              FormBuilderTextField(
-                onChanged: (val) {
-                  setState(() {
-                    bio = val;
-                  });
-                },
-                attribute: 'bio',
-                initialValue: Information.tech,
-                decoration: InputDecoration(labelText: 'bio'),
-              ),
-            ],
-          )),
+      body: Container(
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            FormBuilder(
+                key: _fbKey,
+                child: Column(
+                  children: [
+                    FormBuilderTextField(
+                      onChanged: (val) {
+                        setState(() {
+                          name = val;
+                        });
+                      },
+                      attribute: 'name',
+                      initialValue: Information.name,
+                      decoration: textDeco.copyWith(labelText: 'Name'),
+                    ),
+                    SizedBox(height: 20),
+                    FormBuilderTextField(
+                      onChanged: (val) {
+                        setState(() {
+                          section = val;
+                        });
+                      },
+                      attribute: 'branch',
+                      initialValue: Information.branch,
+                      decoration: textDeco.copyWith(labelText: 'Branch, Year'),
+                    ),
+                    SizedBox(height: 20),
+                    FormBuilderTextField(
+                      onChanged: (val) {
+                        setState(() {
+                          bio = val;
+                        });
+                      },
+                      attribute: 'domain',
+                      initialValue: Information.tech,
+                      decoration: textDeco.copyWith(labelText: 'Domain'),
+                    ),
+                  ],
+                )),
+          ],
+        ),
+      ),
     );
   }
 }

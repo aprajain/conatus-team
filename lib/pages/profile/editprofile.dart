@@ -71,7 +71,7 @@ class _EditState extends State<Edit> {
                 },
                 attribute: 'bio',
                 initialValue: Information.tech,
-                decoration: InputDecoration(labelText: 'bio'),
+                decoration: InputDecoration(labelText: 'Domain'),
               ),
             ],
           )),
